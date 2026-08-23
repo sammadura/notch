@@ -148,23 +148,36 @@
   }
 
   function loadCatalog() {
-    return fetch("catalog.json", { cache: "no-store" })
-      .then(function (res) {
+    var files = ["catalog-1.json", "catalog-2.json", "catalog-3.json", "catalog-4.json"];
+    return Promise.all(files.map(function (f) {
+      return fetch(f, { cache: "no-store" }).then(function (res) {
         if (!res.ok) throw new Error("catalog");
         return res.json();
-      })
-      .then(function (data) {
-        if (Array.isArray(data)) catalog = { items: data };
-        else if (data && Array.isArray(data.items)) catalog = data;
-        else catalog = { items: [] };
-      })
-      .catch(function () {
-        catalog = { items: [] };
       });
+    })).then(function (parts) {
+      var items = [];
+      parts.forEach(function (data) {
+        if (Array.isArray(data)) items = items.concat(data);
+        else if (data && Array.isArray(data.items)) items = items.concat(data.items);
+      });
+      catalog = { items: items };
+    }).catch(function () {
+      catalog = { items: [] };
+    });
   }
 
   form.addEventListener("input", render);
   form.addEventListener("change", render);
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    render();
+    var target = document.getElementById("results");
+    if (target && !target.hidden) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (gate && !gate.hidden) {
+      gate.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
 
   var pay = document.getElementById("pay");
   if (pay) pay.href = "https://buy.stripe.com/cNi3cx8NtafHgHE6Xy87K04";
