@@ -148,7 +148,7 @@
   }
 
   function loadCatalog() {
-    var files = ["catalog-1.json", "catalog-2.json", "catalog-3.json", "catalog-4.json"];
+    var files = ["catalog-1.json", "catalog-2.json", "catalog-3.json", "catalog-4.json", "catalog-5.json", "catalog-6.json"];
     return Promise.all(files.map(function (f) {
       return fetch(f, { cache: "no-store" }).then(function (res) {
         if (!res.ok) throw new Error("catalog");
