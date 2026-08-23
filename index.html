@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notch — jeans by the numbers</title>
+  <meta name="description" content="Jeans by the numbers on the cloth, not the letter on the tag.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="tape" aria-hidden="true">
+    <div class="tape-face"></div>
+  </div>
+
+  <div class="sheet">
+    <header class="mast">
+      <div class="wordmark">
+        <span class="cut" aria-hidden="true"></span>
+        <h1>Notch</h1>
+      </div>
+      <p class="line">Jeans by the numbers on the cloth, not the letter on the tag.</p>
+    </header>
+
+    <main>
+      <form id="tape-form" autocomplete="off">
+        <fieldset class="nums">
+          <legend class="sr">Your tape, inches</legend>
+
+          <label class="cell">
+            <span class="k">Waist</span>
+            <span class="field">
+              <input id="waist" name="waist" type="number" inputmode="decimal" min="0" step="0.25" placeholder="—">
+              <span class="unit">in</span>
+            </span>
+            <span class="how">Tape a pair that already fits, laid flat, across the band. Double it if the brand lists a flat number.</span>
+          </label>
+
+          <label class="cell">
+            <span class="k">Rise</span>
+            <span class="field">
+              <input id="rise" name="rise" type="number" inputmode="decimal" min="0" step="0.25" placeholder="—">
+              <span class="unit">in</span>
+            </span>
+            <span class="how">Crotch seam straight up the front to the top of the band.</span>
+          </label>
+
+          <label class="cell">
+            <span class="k">Inseam</span>
+            <span class="field">
+              <input id="inseam" name="inseam" type="number" inputmode="decimal" min="0" step="0.25" placeholder="—">
+              <span class="unit">in</span>
+            </span>
+            <span class="how">Crotch seam down the inner leg to the hem.</span>
+          </label>
+
+          <label class="cell">
+            <span class="k">Thigh</span>
+            <span class="field">
+              <input id="thigh" name="thigh" type="number" inputmode="decimal" min="0" step="0.25" placeholder="—">
+              <span class="unit">in</span>
+            </span>
+            <span class="how">Fullest point below the crotch, around — or flat across × 2. Leave blank if they do not publish it.</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="slack">
+          <legend>Tolerance, inches</legend>
+          <p class="hint">How far a published number may miss yours. Blank fields are not used.</p>
+          <div class="slack-row">
+            <label>Waist <input id="tol-waist" type="number" inputmode="decimal" min="0" step="0.25" value="0.5"></label>
+            <label>Rise <input id="tol-rise" type="number" inputmode="decimal" min="0" step="0.25" value="0.75"></label>
+            <label>Inseam <input id="tol-inseam" type="number" inputmode="decimal" min="0" step="0.25" value="1"></label>
+            <label>Thigh <input id="tol-thigh" type="number" inputmode="decimal" min="0" step="0.25" value="0.5"></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <section id="gate" class="gate">
+        <p class="gate-copy">Matching pairs stay covered until you unlock. We match published garment numbers only. The letter on the tag is ignored.</p>
+        <a href="#" id="pay">Unlock matches — $7</a>
+      </section>
+
+      <section id="results" class="results" hidden>
+        <h2 class="sr">Matches</h2>
+        <div id="cards"></div>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <p>Measurements from brand product pages, not partnerships. No account.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
